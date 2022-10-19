@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from Selenium_based_mini_projects_using_Python.RahulShettyAcademy.Src.locators.locators import Locator
+from RahulShettyAcademy.Src.locators.locators import Locator
 
 
 class ForgotPassword(object):

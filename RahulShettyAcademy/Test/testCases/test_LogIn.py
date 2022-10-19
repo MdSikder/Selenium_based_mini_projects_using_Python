@@ -1,11 +1,10 @@
 import time
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from Selenium_based_mini_projects_using_Python.RahulShettyAcademy.Src.locators.locators import Locator
-from Selenium_based_mini_projects_using_Python.RahulShettyAcademy.Src.base.environment_setup import EnvironmentSetup
-from Selenium_based_mini_projects_using_Python.RahulShettyAcademy.Src.page_object_model.pom_logIn_page import PomLogin
-from Selenium_based_mini_projects_using_Python.RahulShettyAcademy.Src.page_object_model.pom_ForgotPassword import ForgotPassword
+from RahulShettyAcademy.Src.base.environment_setup import EnvironmentSetup
+from RahulShettyAcademy.Src.page_object_model.pom_logIn_page import PomLogin
+from RahulShettyAcademy.screen_shots.screen_shots import SS
+
+ss_path = "/ForgotPass/"
 
 
 class Test1(EnvironmentSetup):
@@ -19,40 +18,30 @@ class Test1(EnvironmentSetup):
 
         main = PomLogin(driver)
 
-        main.UserNameBar.send_keys('porag')
-        time.sleep(2)
-        main.PasswordBar.send_keys('123!@')
-        time.sleep(2)
-        main.SingInButton.click()
-        time.sleep(2)
+        if main.UserNameBar.is_enabled():
+            print("UserName Bar is enabled")
+            main.UserNameBar.send_keys('porag')
+            time.sleep(2)
+        else:
+            print("UserName bar is not enable")
 
-        main.ForgotYourPassword.click()
-        self.driver.implicitly_wait(5)
-        time.sleep(4)
+        if main.PasswordBar.is_enabled():
+            print("Password bar is enable")
+            main.PasswordBar.send_keys('rahulshettyacademy')
+            time.sleep(2)
+        else:
+            print("Password bar is not enable")
 
-        forgotPass = ForgotPassword(driver)
+        if main.SingInButton.is_enabled():
+            print("SingIn Button is enable")
+            main.SingInButton.click()
+            self.driver.implicitly_wait(5)
+            time.sleep(2)
+        else:
+            print("SignIn button is not enable")
 
-        forgotPass.NameBar.send_keys('porag')
-        time.sleep(2)
-        forgotPass.EmailBar.send_keys('test@gmail.com')
-        time.sleep(2)
-        forgotPass.PhoneNumberBar.send_keys('01257894163')
-        time.sleep(3)
-        forgotPass.ResetButton.click()
-        time.sleep(2)
-        # forgotPass.PickPass.get_Text()
+        ss = SS(driver)
+        file_name = ss_path + "Test-1_scrrenshot_" + time.asctime().replace(":", "_") + ".png"
 
-        forgotPass.GoToLoginButton.click()
-        self.driver.implicitly_wait(5)
-        time.sleep(3)
-
-        main.UserNameBar.send_keys("Porag")
-        time.sleep(1)
-
-        main.PasswordBar.send_keys("rahulshettyacademy")
-        time.sleep(2)
-
-        main.SingInButton.click()
-        self.driver.implicitly_wait(5)
-        time.sleep(5)
-        print("LogIn Successfully")
+        ss.driver.save_screenshot(file_name)
+        ss.ScreenShot(file_name)
