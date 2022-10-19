@@ -8,9 +8,9 @@ from RahulShettyAcademy.Src.page_object_model.pom_logIn_page import PomLogin
 from RahulShettyAcademy.Src.page_object_model.pom_ForgotPassword import ForgotPassword
 
 
-class Test1(EnvironmentSetup):
+class TestForgotPass(EnvironmentSetup):
 
-    def test1(self):
+    def test_forgot_pass(self):
         pageUrl = "https://rahulshettyacademy.com/locatorspractice/"
         driver = self.driver
         self.driver.get(pageUrl)

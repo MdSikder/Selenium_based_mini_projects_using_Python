@@ -6,6 +6,7 @@ from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 
 from Orangechrmlive.Src.base.environment_setup import EnvironmentSetup
+from Orangechrmlive.Src.pom.pom_Logo import PomLogo
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -42,11 +43,29 @@ class TestHRM(EnvironmentSetup):
         self.driver.implicitly_wait(20)
         time.sleep(2)
 
-        self.driver.find_element(By.NAME, "username").send_keys("Admin")
-        self.driver.find_element(By.NAME, "password").send_keys("admin123")
-        self.driver.find_element(By.XPATH,
-                                 "//body/div[@id='app']/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/form[1]/div[3]/button[1]").click()
-        time.sleep(4)
+        main = PomLogo(driver)
+        if main.UserNameBar.is_enabled():
+            print("UserName Bar is enabled")
+            main.UserNameBar.send_keys('porag')
+            time.sleep(2)
+        else:
+            print("UserName bar is not enable")
+
+        if main.PasswordBar.is_enabled():
+            print("Password bar is enable")
+            main.PasswordBar.send_keys('rahulshettyacademy')
+            time.sleep(2)
+        else:
+            print("Password bar is not enable")
+
+        if main.SignIn_button.is_enabled():
+            print("SingIn Button is enable")
+            main.SignIn_button.click()
+            self.driver.implicitly_wait(5)
+            time.sleep(2)
+        else:
+            print("SignIn button is not enable")
+
         act_title = driver.title
 
         if act_title == "OrangeHRM":
