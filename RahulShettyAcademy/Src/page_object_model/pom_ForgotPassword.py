@@ -12,6 +12,7 @@ class ForgotPassword(object):
         self.ResetButton = driver.find_element(By.CSS_SELECTOR, Locator.ResetButton)
         self.PickPass = driver.find_element(By.CSS_SELECTOR, Locator.PickPass)
         self.GoToLoginButton = driver.find_element(By.CSS_SELECTOR, Locator.GoToLoginButton)
+        self.ForgotYourPassword = driver.find_element(By.LINK_TEXT, Locator.ForgotYourPassword)
 
     def getNameBar(self):
         return self.NameBar
@@ -30,3 +31,6 @@ class ForgotPassword(object):
 
     def getGoToLoginButton(self):
         return self.GoToLoginButton
+
+    def getForgotYourPassword(self):
+        return self.ForgotYourPassword

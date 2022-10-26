@@ -9,7 +9,6 @@ class PomLogin(object):
         self.UserNameBar = driver.find_element(By.ID, Locator.UserNameBar)
         self.PasswordBar = driver.find_element(By.NAME, Locator.PasswordBar)
         self.SingInButton = driver.find_element(By.CLASS_NAME, Locator.signinButton)
-        self.ForgotYourPassword = driver.find_element(By.LINK_TEXT, Locator.ForgotYourPassword)
 
     def getUserNameBar(self):
         return self.UserNameBar
@@ -20,5 +19,4 @@ class PomLogin(object):
     def getSignInButton(self):
         return self.SingInButton
 
-    def grtForgotYourPassword(self):
-        return self.ForgotYourPassword
+

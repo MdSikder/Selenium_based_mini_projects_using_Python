@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from RahulShettyAcademy.Src.locators.locators import Locator
@@ -8,8 +9,9 @@ from RahulShettyAcademy.Src.page_object_model.pom_logIn_page import PomLogin
 from RahulShettyAcademy.Src.page_object_model.pom_ForgotPassword import ForgotPassword
 
 
+@allure.severity(allure.severity_level.NORMAL)
 class TestForgotPass(EnvironmentSetup):
-
+    @allure.severity(allure.severity_level.NORMAL)
     def test_forgot_pass(self):
         pageUrl = "https://rahulshettyacademy.com/locatorspractice/"
         driver = self.driver
@@ -18,8 +20,9 @@ class TestForgotPass(EnvironmentSetup):
         time.sleep(2)
 
         main = PomLogin(driver)
+        forgotPass = ForgotPassword(driver)
 
-        main.ForgotYourPassword.click()
+        forgotPass.ForgotYourPassword.click()
         self.driver.implicitly_wait(5)
         time.sleep(4)
 
@@ -49,3 +52,10 @@ class TestForgotPass(EnvironmentSetup):
         self.driver.implicitly_wait(5)
         time.sleep(5)
         print("LogIn Successfully")
+
+        status = self.driver.find_element(By.XPATH, "//*[@id='root']/div/div/div/h1/strong").is_displayed()
+        if status == True:
+            assert True
+            print("Logo is here")
+        else:
+            assert False

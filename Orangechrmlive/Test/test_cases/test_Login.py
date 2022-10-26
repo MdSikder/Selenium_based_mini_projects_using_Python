@@ -2,40 +2,13 @@ import time
 
 import allure
 import pytest
-from allure_commons.types import AttachmentType
-from selenium.webdriver.common.by import By
-
 from Orangechrmlive.Src.base.environment_setup import EnvironmentSetup
 from Orangechrmlive.Src.pom.pom_Logo import PomLogo
 
 
 @allure.severity(allure.severity_level.NORMAL)
-class TestLogo(EnvironmentSetup):
-    @allure.severity(allure.severity_level.MINOR)
-    def test_Logo(self):
-        pageUrl = "https://opensource-demo.orangehrmlive.com/"
-        driver = self.driver
-        self.driver.get(pageUrl)
-        self.driver.implicitly_wait(20)
-        time.sleep(2)
+class TestLogin(EnvironmentSetup):
 
-        status = self.driver.find_element(By.XPATH, "//*[@id='app']/div[1]/div/div[1]/div/div[1]/img").is_displayed()
-        if status == True:
-            assert True
-            print("Logo is here")
-        else:
-            assert False
-
-    @allure.severity(allure.severity_level.NORMAL)
-    def test_employeesList(self):
-        pytest.skip("Skipping test...later I will implement...")
-        pageUrl = "https://opensource-demo.orangehrmlive.com/"
-        driver = self.driver
-        self.driver.get(pageUrl)
-        self.driver.implicitly_wait(20)
-        time.sleep(2)
-
-    @allure.severity(allure.severity_level.CRITICAL)
     def test_Login(self):
         pageUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
         driver = self.driver
