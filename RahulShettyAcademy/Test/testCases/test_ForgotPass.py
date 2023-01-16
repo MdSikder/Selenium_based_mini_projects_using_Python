@@ -19,39 +19,53 @@ class TestForgotPass(EnvironmentSetup):
         self.driver.implicitly_wait(20)
         time.sleep(2)
 
-        main = PomLogin(driver)
-        forgotPass = ForgotPassword(driver)
-
-        forgotPass.ForgotYourPassword.click()
-        self.driver.implicitly_wait(5)
-        time.sleep(4)
-
-        forgotPass = ForgotPassword(driver)
-
-        forgotPass.NameBar.send_keys('porag')
-        time.sleep(2)
-        forgotPass.EmailBar.send_keys('test@gmail.com')
-        time.sleep(2)
-        forgotPass.PhoneNumberBar.send_keys('01257894163')
-        time.sleep(3)
-        forgotPass.ResetButton.click()
+        username = driver.find_element(By.ID, Locator.UserNameBar)
+        username.send_keys('porag')
         time.sleep(2)
 
-        # forgotPass.PickPass.get_Text()
-        forgotPass.GoToLoginButton.click()
-        self.driver.implicitly_wait(5)
-        time.sleep(3)
+        password = driver.find_element(By.NAME, Locator.PasswordBar)
+        password.send_keys('wrong_password')
+        time.sleep(2)
 
-        main.UserNameBar.send_keys("Porag")
+        signinButton = driver.find_element(By.CLASS_NAME, Locator.signinButton)
+        signinButton.click()
+        time.sleep(5)
+
+        forgot = driver.find_element(By.LINK_TEXT, Locator.ForgotYourPassword)
+        forgot.click()
         time.sleep(1)
 
-        main.PasswordBar.send_keys("rahulshettyacademy")
+        name = driver.find_element(By.XPATH, Locator.NameBar)
+        name.send_keys('porag')
+        time.sleep(1)
+
+        email = driver.find_element(By.XPATH, Locator.EmailBar)
+        email.send_keys('porag@gmail.com')
+        time.sleep(1)
+
+        PhoneNumber = driver.find_element(By.CSS_SELECTOR, Locator.PhoneNumberBar)
+        PhoneNumber.send_keys('01677001457')
+        time.sleep(1)
+
+        reset = driver.find_element(By.CSS_SELECTOR, Locator.ResetButton)
+        reset.click()
+        time.sleep(3)
+
+        goToLogin = driver.find_element(By.CSS_SELECTOR, Locator.GoToLoginButton)
+        goToLogin.click()
+        time.sleep(3)
+
+        username = driver.find_element(By.ID, Locator.UserNameBar)
+        username.send_keys('porag')
         time.sleep(2)
 
-        main.SingInButton.click()
-        self.driver.implicitly_wait(5)
+        password = driver.find_element(By.NAME, Locator.PasswordBar)
+        password.send_keys('rahulshettyacademy')
+        time.sleep(2)
+
+        signinButton = driver.find_element(By.CLASS_NAME, Locator.signinButton)
+        signinButton.click()
         time.sleep(5)
-        print("LogIn Successfully")
 
         status = self.driver.find_element(By.XPATH, "//*[@id='root']/div/div/div/h1/strong").is_displayed()
         if status == True:
@@ -59,3 +73,4 @@ class TestForgotPass(EnvironmentSetup):
             print("Logo is here")
         else:
             assert False
+
